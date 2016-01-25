@@ -2,7 +2,7 @@
 <html ng-app="redditApp">
 <head>
 	<title>Reddit Clone</title>
-	
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -44,24 +44,29 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div class="container-fluid" ng-show="addPost">
-		<form name="postForm" action="#">
-			<div class="form-group">
+		<form name="postForm" ng-submit="submitPost(postForm)" nonvalidate>
+			
+			<div class="form-group" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine ,'has-success' : postForm.title.$valid }">
 				<label for="title">Title</label>
-				<input type="text" class="form-control" id="title" ng-model="post.title" name="title" placeholder="Title" ng-minlength="1" required>
+				<input type="text" class="form-control" id="title" ng-model="post.title" name="title" placeholder="Title" ng-minlength="3" ng-required="true">
 			</div>
-			<div class="form-group">
+
+			<div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
 				<label for="author">Author</label>
-				<input type="text" class="form-control" id="author" ng-model="post.author" name="Author" placeholder="Author"  ng-minlength="1" required>
+				<input type="text" class="form-control" id="author" ng-model="post.author" name="author" placeholder="Author"  ng-minlength="2" ng-required="true">
 			</div>
-			<div class="form-group">
+
+			<div class="form-group" ng-class="{ 'has-error' : postForm.url.$invalid && !postForm.url.$pristine ,'has-success' : postForm.url.$valid }">
 				<label for="url">Image URL</label>
-				<input type="text" class="form-control" id="url" ng-model="post.imageUrl" name="url" placeholder="Image URL"  ng-minlength="1" required>
+				<input type="text" class="form-control" id="url" ng-model="post.imageUrl" name="url" placeholder="Image URL"  ng-minlength="2" ng-required="true">
 			</div>
-			<div class="form-group">
+
+			<div class="form-group" ng-class="{ 'has-error' : postForm.description.$invalid && !postForm.description.$pristine ,'has-success' : postForm.description.$valid }">
 				<label for="description">Description</label>
-				<input type="text" class="form-control" id="description" ng-model="post.description" placeholder="Description"  name="description" ng-minlength="1" required>
+				<input type="text" class="form-control" id="description" ng-model="post.description" placeholder="Description"  name="description" ng-minlength="2" ng-required="true">
 			</div>
-			<button type="button" ng-click="submitPost()">Submit New Post</button>
+
+			<button type="submit" ng-show="postForm.$valid">Submit New Post</button>
 		</form>
 	</div>
 

@@ -9,14 +9,17 @@ app.controller("AppController", function($scope) {
 	}
 	$scope.displayInitialPost = false;
 	$scope.currentPosts = [];
-	$scope.submitPost = function() {
+	
+	$scope.submitPost = function(postForm) {
 		$scope.addPost = false;
 		$scope.displayInitialPost = true;
+		
 		var postCopy = {};
 		for (key in $scope.post) {
 			postCopy[key] = $scope.post[key];
 		}
 		$scope.currentPosts.push(postCopy);
-		console.log($scope.currentPosts);
 	}
+
+
 });
