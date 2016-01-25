@@ -12,7 +12,11 @@ app.controller("AppController", function($scope) {
 	$scope.submitPost = function() {
 		$scope.addPost = false;
 		$scope.displayInitialPost = true;
-		$scope.currentPosts.push($scope.post);
+		var postCopy = {};
+		for (key in $scope.post) {
+			postCopy[key] = $scope.post[key];
+		}
+		$scope.currentPosts.push(postCopy);
 		console.log($scope.currentPosts);
 	}
 });
