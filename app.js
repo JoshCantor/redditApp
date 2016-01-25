@@ -7,8 +7,12 @@ app.controller("AppController", function($scope) {
 		$scope.addPost = true;
 
 	}
+	$scope.displayInitialPost = false;
+	$scope.currentPosts = [];
 	$scope.submitPost = function() {
 		$scope.addPost = false;
+		$scope.displayInitialPost = true;
+		$scope.currentPosts.push($scope.post);
+		console.log($scope.currentPosts);
 	}
-
 });
