@@ -1,4 +1,4 @@
-var app = angular.module("redditApp", []);
+var app = angular.module("redditApp", ['angularMoment']);
 
 app.controller("AppController", function($scope) {
 	$scope.post = {};
@@ -10,6 +10,7 @@ app.controller("AppController", function($scope) {
 	$scope.post.currentComments = [];
 	$scope.post.displayComments = false;
 	$scope.addPost = false;
+	$scope.post.date = moment();
 
 	$scope.newPost = function() {
 		$scope.addPost = true;

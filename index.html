@@ -93,7 +93,7 @@
 						<p>{{n.description}}</p>
 					</div>
 					<div class="row">
-						<div class="col-md-2"><span class="glyphicon glyphicon-calendar"></span>Date</div>
+						<div class="col-md-2"><span class="glyphicon glyphicon-calendar"></span>{{n.date | amCalendar}}</div>
 						<div class="col-md-2" ng-click="toggleComments()"><span class="glyphicon glyphicon-comment"></span>Comments</div>
 						<div class="col-md-2" ng-click="showCommentForm()"><span class="glyphicon glyphicon-pencil"></span>Add Comment</div>
 					</div>
@@ -127,5 +127,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.3/angular-moment.min.js"></script>
 </body>
 </html>
