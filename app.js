@@ -25,6 +25,7 @@ app.controller("AppController", function($scope) {
 			postCopy[key] = $scope.post[key];
 		}
 		$scope.currentPosts.push(postCopy);
+		console.log('currentPosts', $scope.currentPosts);
 	}
 	
 	$scope.upVote = function(thisPost) {
