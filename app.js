@@ -8,6 +8,7 @@ app.controller("AppController", function($scope) {
 	$scope.post.addComment = false;
 	$scope.post.comment = {};
 	$scope.post.currentComments = [];
+	$scope.post.displayComments = false;
 	$scope.addPost = false;
 
 	$scope.newPost = function() {
@@ -48,6 +49,7 @@ app.controller("AppController", function($scope) {
 
 	$scope.showCommentForm = function() {
 		$scope.addComment = true;
+		$scope.displayComments = false;
 	}
 
 	$scope.submitComment = function(postForm) {
@@ -56,9 +58,16 @@ app.controller("AppController", function($scope) {
 			commentCopy[key] = $scope.post.comment[key];
 		}
 		$scope.post.currentComments.push(commentCopy);
-		console.log('copy', commentCopy);
 		$scope.addComment = false;
+		$scope.displayComments = true;
 	}
 
-
+	$scope.toggleComments = function() {
+		if ($scope.displayComments = true) {
+			$scope.displayComments = false;
+		} else {
+			$scope.displayComments = true;
+		}
+		
+	}
 });

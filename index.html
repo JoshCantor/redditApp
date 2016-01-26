@@ -94,7 +94,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-2"><span class="glyphicon glyphicon-calendar"></span>Date</div>
-						<div class="col-md-2"><span class="glyphicon glyphicon-comment"></span>Comments</div>
+						<div class="col-md-2" ng-click="toggleComments()"><span class="glyphicon glyphicon-comment"></span>Comments</div>
 						<div class="col-md-2" ng-click="showCommentForm()"><span class="glyphicon glyphicon-pencil"></span>Add Comment</div>
 					</div>
 					<div class="row" >
@@ -112,6 +112,11 @@
 									<button type="submit">Add Comment</button>
 								</div>
 							</form>
+						</div>
+					</div>
+					<div class="container-fluid" ng-show="displayComments" ng-repeat="n in post.currentComments track by $index">
+						<div class="row">
+							<p>{{n.author}} - {{n.text}}</p>
 						</div>
 					</div>
 				</div>
