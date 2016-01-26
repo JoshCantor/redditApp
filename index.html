@@ -80,9 +80,10 @@
 				<div class="col-md-9">
 					<div class="row">
 						<div class="row">
-							<div class="col-md-3">{{n.title}} | </div>
-							<span class="glyphicon glyphicon-arrow-up"></span>
-							<span class="glyphicon glyphicon-arrow-down"></span>
+							<div class="col-md-3">{{n.title}} |  </div>
+							<span class="glyphicon glyphicon-arrow-up" ng-click="upVote(n)"></span>
+							<span class="glyphicon glyphicon-arrow-down" ng-click="downVote(n)"></span>
+							<p ng-class="{ positive: isPositive(n.votes), negative: isNegative(n.votes), zero: isZero(n.votes) }">{{n.votes}}</p>
 						<div class="row">
 							<div class="col-md-offset-10">
 								<p>By {{n.author}}</p>
