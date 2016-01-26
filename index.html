@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 
 </head>
@@ -72,7 +73,7 @@
 		</form>
 	</div>
 
-	<div class="container-fluid" ng-repeat="n in sortBy(sortValue)  | filter: searchText">
+	<div class="container-fluid postContainer" ng-repeat="n in sortBy(sortValue)  | filter: searchText">
 		<br>
 		<div class="container-fluid" style="background:#EEEEEE" ng-show="displayInitialPost">
 			<div class="row">

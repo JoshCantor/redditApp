@@ -9,3 +9,21 @@
 .zero {
 	color:black;
 }
+
+.postContainer.ng-leave {
+	transition: opacity 1s;
+	opacity: 1;
+}
+
+.postContainer.ng-leave-active {
+  opacity: 0;
+}
+
+.postContainer.ng-enter {
+	transition: opacity 1s;
+	opacity: 0;
+}
+
+.postContainer.ng-enter-active {
+  opacity: 1;
+}
