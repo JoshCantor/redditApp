@@ -79,23 +79,39 @@
 				</div>
 				<div class="col-md-9">
 					<div class="row">
-						<div class="row">
-							<div class="col-md-3">{{n.title}} |  </div>
-							<span class="glyphicon glyphicon-arrow-up" ng-click="upVote(n)"></span>
-							<span class="glyphicon glyphicon-arrow-down" ng-click="downVote(n)"></span>
-							<p ng-class="{ positive: isPositive(n.votes), negative: isNegative(n.votes), zero: isZero(n.votes) }">{{n.votes}}</p>
-						<div class="row">
-							<div class="col-md-offset-10">
-								<p>By {{n.author}}</p>
-							</div>
-
-						<div class="row">
-							<p>{{n.description}}</p>
+						<div class="col-md-3">{{n.title}} |  </div>
+						<span class="glyphicon glyphicon-arrow-up" ng-click="upVote(n)"></span>
+						<span class="glyphicon glyphicon-arrow-down" ng-click="downVote(n)"></span>
+						<p ng-class="{ positive: isPositive(n.votes), negative: isNegative(n.votes), zero: isZero(n.votes) }">{{n.votes}}</p>
+					</div>
+					<div class="row">
+						<div class="col-md-offset-10">
+							<p>By {{n.author}}</p>
 						</div>
-						<div class="row">
-							<div class="col-md-2"><span class="glyphicon glyphicon-calendar"></span>Date</div>
-							<div class="col-md-2"><span class="glyphicon glyphicon-comment"></span>Comments</div>
-							<div class="col-md-2"><span class="glyphicon glyphicon-pencil"></span>Add Comment</div>
+					</div>
+					<div class="row">
+						<p>{{n.description}}</p>
+					</div>
+					<div class="row">
+						<div class="col-md-2"><span class="glyphicon glyphicon-calendar"></span>Date</div>
+						<div class="col-md-2"><span class="glyphicon glyphicon-comment"></span>Comments</div>
+						<div class="col-md-2" ng-click="showCommentForm()"><span class="glyphicon glyphicon-pencil"></span>Add Comment</div>
+					</div>
+					<div class="row" >
+						<div class="col-md-12" ng-show="addComment">
+							<form name="postForm">
+								<div  class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
+									<label for="author">Author:</label>
+									<input type="text" class="form-control" id="author" ng-model="post.comment.author" placeholder="Author" name="author" ng-minlength="2" ng-required="true">
+								</div>
+								<div class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.text.$invalid && !postForm.text.$pristine ,'has-success' : postForm.text.$valid }">
+									<label for="text">Text:</label>
+									<input type="text" class="form-control" id="text" ng-model="post.comment.text" placeholder="Text" name="author" ng-minlength="2" ng-required="true">
+								</div>
+								<div class="col-md-2">
+									<button class="submit">Add Comment</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

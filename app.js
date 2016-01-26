@@ -2,14 +2,17 @@ var app = angular.module("redditApp", []);
 
 app.controller("AppController", function($scope) {
 	$scope.post = {};
-	$scope.post.votes = 0;
-	$scope.addPost = false;
-	$scope.newPost = function() {
-		$scope.addPost = true;
-
-	}
 	$scope.displayInitialPost = false;
 	$scope.currentPosts = [];
+	$scope.post.votes = 0;
+	$scope.post.addComment = false;
+	$scope.post.comment = {};
+	$scope.post.currentComments = [];
+	$scope.addPost = false;
+
+	$scope.newPost = function() {
+		$scope.addPost = true;
+	}
 	
 	$scope.submitPost = function(postForm) {
 		$scope.addPost = false;
@@ -43,7 +46,14 @@ app.controller("AppController", function($scope) {
 		return (voteTotal === 0);
 	}
 
+	$scope.showCommentForm = function() {
+		$scope.addComment = true;
+	}
 
+	$scope.submitComment = function(postForm) {
+
+		$scope.addComment = false;
+	}
 
 
 });
