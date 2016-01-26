@@ -12,8 +12,8 @@ app.controller("AppController", function($scope) {
 	$scope.addPost = false;
 	$scope.post.date = moment();
 
-	$scope.newPost = function() {
-		$scope.addPost = true;
+	$scope.toggleNewPost = function() {
+		$scope.addPost = !$scope.addPost;	
 	}
 	
 	$scope.submitPost = function(postForm) {
@@ -67,4 +67,6 @@ app.controller("AppController", function($scope) {
 	$scope.toggleComments = function() {
 		$scope.displayComments = !$scope.displayComments;
 	}
+
+
 });
