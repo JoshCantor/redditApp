@@ -11,6 +11,7 @@ app.controller("AppController", function($scope) {
 	$scope.post.displayComments = false;
 	$scope.addPost = false;
 	$scope.post.date = moment();
+	$scope.post.commentNumber = 0
 
 	$scope.toggleNewPost = function() {
 		$scope.addPost = !$scope.addPost;	
@@ -68,5 +69,8 @@ app.controller("AppController", function($scope) {
 		$scope.displayComments = !$scope.displayComments;
 	}
 
+	$scope.getCommentCount = function(thisPost) {
+		return thisPost.currentComments.length;
+	}
 
 });

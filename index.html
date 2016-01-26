@@ -94,7 +94,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-2"><span class="glyphicon glyphicon-calendar"></span>{{n.date | amCalendar}}</div>
-						<div class="col-md-2" ng-click="toggleComments()"><span class="glyphicon glyphicon-comment"></span>Comments</div>
+						<div class="col-md-2" ng-click="toggleComments()"><span class="glyphicon glyphicon-comment"></span><ng-pluralize count="getCommentCount(n)" when="{'1': '{} Comment', 'other': '{} Comments'}"></ng-pluralize></div>
 						<div class="col-md-2" ng-click="showCommentForm()"><span class="glyphicon glyphicon-pencil"></span>Add Comment</div>
 					</div>
 					<div class="row" >
