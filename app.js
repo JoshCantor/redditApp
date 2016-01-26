@@ -51,7 +51,12 @@ app.controller("AppController", function($scope) {
 	}
 
 	$scope.submitComment = function(postForm) {
-
+		var commentCopy = {};
+		for (key in $scope.post.comment) {
+			commentCopy[key] = $scope.post.comment[key];
+		}
+		$scope.post.currentComments.push(commentCopy);
+		console.log('copy', commentCopy);
 		$scope.addComment = false;
 	}
 
