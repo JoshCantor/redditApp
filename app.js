@@ -10,7 +10,6 @@ app.controller("AppController", function($scope) {
 	$scope.post.currentComments = [];
 	$scope.post.displayComments = false;
 	$scope.addPost = false;
-	$scope.post.date = moment();
 	$scope.post.commentNumber = 0
 
 	$scope.toggleNewPost = function() {
@@ -21,13 +20,17 @@ app.controller("AppController", function($scope) {
 		$scope.addPost = false;
 		$scope.displayInitialPost = true;
 		
+		var momentDate = moment(),
+			rawDate = Date.now();
+		$scope.post.date = momentDate;
+		$scope.post.rawDate = rawDate;
+		
 		var postCopy = {};
 		$scope.post.votes = 0;
 		for (key in $scope.post) {
 			postCopy[key] = $scope.post[key];
 		}
 		$scope.currentPosts.push(postCopy);
-		console.log('currentPosts', $scope.currentPosts);
 	}
 	
 	$scope.upVote = function(thisPost) {
@@ -73,4 +76,26 @@ app.controller("AppController", function($scope) {
 		return thisPost.currentComments.length;
 	}
 
+	$scope.sortBy = function(sortValue) {
+		if (sortValue === "vote") {
+			return $scope.currentPosts.sort(function(a, b) {
+				return b.votes - a.votes;
+			});
+		} else if (sortValue === "title") {
+			return $scope.currentPosts.sort(function(a, b) {
+				if (b.title < a.title) {
+					return 1;
+				}
+				if (b.title > a.title) {
+					return -1;
+				}
+				return 0;
+			});
+		} else {
+			return $scope.currentPosts.sort(function(a, b) {
+				console.log("a", a.rawDate, ",", "b", b.rawDate)
+				return b.rawDate - a.rawDate;
+			});
+		}
+	}
 });

@@ -27,12 +27,14 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li><button ng-click="toggleNewPost()">Add New Post</li></button>
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Action</a></li>
-	            <li><a href="#">Another action</a></li>
-	          </ul>
+	        <li>
+	         <!--  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a> -->
+	          <label for="sortBy">Sort By</label>
+	          <select ng-model="sortValue" class="form-control" id="sortBy">
+	            <option value="vote">Vote</option>
+	            <option value="date">Date</option>
+	            <option value="title">Title</option>
+	          </select>
 	        </li>
 	      </ul>
 	      <form class="navbar-form navbar-left" role="search">
@@ -70,7 +72,7 @@
 		</form>
 	</div>
 
-	<div class="container-fluid" ng-repeat="n in currentPosts  | filter: searchText">
+	<div class="container-fluid" ng-repeat="n in sortBy(sortValue)  | filter: searchText">
 		<br>
 		<div class="container-fluid" style="background:#EEEEEE" ng-show="displayInitialPost">
 			<div class="row">
