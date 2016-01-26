@@ -63,11 +63,6 @@ app.controller("AppController", function($scope) {
 	}
 
 	$scope.toggleComments = function() {
-		if ($scope.displayComments = true) {
-			$scope.displayComments = false;
-		} else {
-			$scope.displayComments = true;
-		}
-		
+		$scope.displayComments = !$scope.displayComments;
 	}
 });
