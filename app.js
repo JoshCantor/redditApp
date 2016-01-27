@@ -54,8 +54,8 @@ app.controller("AppController", function($scope) {
 		return (voteTotal === 0);
 	}
 
-	$scope.showCommentForm = function() {
-		$scope.addComment = true;
+	$scope.toggleCommentForm = function() {
+		$scope.addComment = !$scope.addComment;
 		$scope.displayComments = false;
 	}
 
