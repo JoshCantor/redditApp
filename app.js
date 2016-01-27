@@ -10,7 +10,8 @@ app.controller("AppController", function($scope) {
 	$scope.post.currentComments = [];
 	$scope.post.displayComments = false;
 	$scope.addPost = false;
-	$scope.post.commentNumber = 0
+	$scope.post.commentNumber = 0;
+	$scope.sortValue = "date";
 
 	$scope.toggleNewPost = function() {
 		$scope.addPost = !$scope.addPost;	
@@ -74,6 +75,11 @@ app.controller("AppController", function($scope) {
 
 	$scope.getCommentCount = function(thisPost) {
 		return thisPost.currentComments.length;
+	}
+
+	$scope.resetSortValue = function(sortValue) {
+		console.log(sortValue);
+		$scope.sortValue = sortValue;
 	}
 
 	$scope.sortBy = function(sortValue) {
