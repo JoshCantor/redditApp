@@ -103,15 +103,21 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-3" id="date" >
+							<div class="col-md-2" id="date" >
 								<p><span class="glyphicon glyphicon-calendar"></span> {{n.date | amCalendar}}</p>
 							</div>
-							<div class="col-md-3" id="comments" ng-click="toggleComments()">
+							<div class="col-md-1">
+								<p class="bar">|</p>
+							</div>
+							<div class="col-md-2" id="comments" ng-click="toggleComments()">
 								<p><span class="glyphicon glyphicon-comment"></span>
 								 <ng-pluralize count="getCommentCount(n)" when="{'1': '{} Comment', 'other': '{} Comments'}"></ng-pluralize>
 								</p>
 							</div>
-							<div class="col-md-3" id="addComments" ng-click="toggleCommentForm()">
+							<div class="col-md-1">
+								<p class="bar">|</p>
+							</div>
+							<div class="col-md-2" id="addComments" ng-click="toggleCommentForm()">
 								<p><span class="glyphicon glyphicon-pencil"></span> Add Comment</p>
 							</div>
 						</div>
