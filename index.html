@@ -26,45 +26,46 @@
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li><button type="button" class="btn btn-primary navbar-btn" ng-click="toggleNewPost()"><span class="glyphicon glyphicon-plus"></span> New Post</li></button>
-	        <li>
-	         
-	         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort Posts By <span class="caret"></span></a>
-               <ul class="dropdown-menu">
-                 <li><a href="" ng-click="resetSortValue('vote')">Vote</a></li>
-                 <li><a href="" ng-click="resetSortValue('date')">Date</a></li>
-                 <li><a href="" ng-click="resetSortValue('title')">Title</a></li>
-               </ul>
-            </li>
-	      </ul>
-	      <form class="navbar-form navbar-left" role="search">
-	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
-	        </div>
-	      </form>
+			<ul class="nav navbar-nav">
+				<li><button type="button" class="btn btn-primary navbar-btn" ng-click="toggleNewPost()"><span class="glyphicon glyphicon-plus"></span> New Post</li></button>
+			</ul>
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+				  <input type="text" class="form-control search" placeholder="Search" ng-model="searchText">
+				</div>
+			</form>
+	  	    <ul class="nav navbar-nav">
+	  	        <li> 
+	  	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort Posts By <span class="caret"></span></a>
+	                <ul class="dropdown-menu">
+	                   <li><a href="" ng-click="resetSortValue('vote')">Vote</a></li>
+	                   <li><a href="" ng-click="resetSortValue('date')">Date</a></li>
+	                   <li><a href="" ng-click="resetSortValue('title')">Title</a></li>
+	                </ul>
+	            </li>
+	  	    </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div class="container-fluid" ng-show="addPost">
 		<form name="postForm" ng-submit="submitPost(postForm)" nonvalidate>
 			
-			<div class="form-group" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine ,'has-success' : postForm.title.$valid }">
+			<div class="form-group col-md-6" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine ,'has-success' : postForm.title.$valid }">
 				<label for="title">Title</label>
 				<input type="text" class="form-control" id="title" ng-model="post.title" name="title" placeholder="Title" ng-minlength="3" ng-required="true">
 			</div>
 
-			<div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
+			<div class="form-group col-md-6" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
 				<label for="author">Author</label>
 				<input type="text" class="form-control" id="author" ng-model="post.author" name="author" placeholder="Author"  ng-minlength="2" ng-required="true">
 			</div>
 
-			<div class="form-group" ng-class="{ 'has-error' : postForm.url.$invalid && !postForm.url.$pristine ,'has-success' : postForm.url.$valid }">
+			<div class="form-group col-md-6" ng-class="{ 'has-error' : postForm.url.$invalid && !postForm.url.$pristine ,'has-success' : postForm.url.$valid }">
 				<label for="url">Image URL</label>
 				<input type="text" class="form-control" id="url" ng-model="post.imageUrl" name="url" placeholder="Image URL"  ng-minlength="2" ng-required="true">
 			</div>
 
-			<div class="form-group" ng-class="{ 'has-error' : postForm.description.$invalid && !postForm.description.$pristine ,'has-success' : postForm.description.$valid }">
+			<div class="form-group col-md-6" ng-class="{ 'has-error' : postForm.description.$invalid && !postForm.description.$pristine ,'has-success' : postForm.description.$valid }">
 				<label for="description">Description</label>
 				<input type="text" class="form-control" id="description" ng-model="post.description" placeholder="Description"  name="description" ng-minlength="2" ng-required="true">
 			</div>
@@ -73,53 +74,68 @@
 		</form>
 	</div>
 
-	<div class="container-fluid postContainer" ng-repeat="n in sortBy(sortValue)  | filter: searchText">
+	<div class="container-fluid postContainer" ng-repeat="n in sortBy(sortValue) | filter: searchText">
 		<br>
-		<div class="container-fluid" style="background:#EEEEEE" ng-show="displayInitialPost">
+		<div class="container-fluid" ng-show="displayInitialPost">
 			<div class="row">
-				<div class="col-md-3"> 
-					<img src="{{n.imageUrl}}">
-				</div>
-				<div class="col-md-9">
-					<div class="row">
-						<div class="col-md-3">{{n.title}} |  </div>
-						<span class="glyphicon glyphicon-arrow-up" ng-click="upVote(n)"></span>
-						<span class="glyphicon glyphicon-arrow-down" ng-click="downVote(n)"></span>
-						<p ng-class="{ positive: isPositive(n.votes), negative: isNegative(n.votes), zero: isZero(n.votes) }">{{n.votes}}</p>
+				<div class="col-md-offset-1 col-md-10" id="postBox">
+					<div class="col-md-2" id="img"> 
+						<img src="{{n.imageUrl}}" height="200px" width="200px">
 					</div>
-					<div class="row">
-						<div class="col-md-offset-10">
-							<p>By {{n.author}}</p>
-						</div>
-					</div>
-					<div class="row">
-						<p>{{n.description}}</p>
-					</div>
-					<div class="row">
-						<div class="col-md-2"><span class="glyphicon glyphicon-calendar"></span>{{n.date | amCalendar}}</div>
-						<div class="col-md-2" ng-click="toggleComments()"><span class="glyphicon glyphicon-comment"></span><ng-pluralize count="getCommentCount(n)" when="{'1': '{} Comment', 'other': '{} Comments'}"></ng-pluralize></div>
-						<div class="col-md-2" ng-click="showCommentForm()"><span class="glyphicon glyphicon-pencil"></span>Add Comment</div>
-					</div>
-					<div class="row" >
-						<div class="col-md-12" ng-show="addComment">
-							<form name="postForm" ng-submit="submitComment(postForm)" nonvalidate>
-								<div  class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
-									<label for="author">Author:</label>
-									<input type="text" class="form-control" id="author" ng-model="post.comment.author" placeholder="Author" name="author" ng-minlength="2" ng-required="true">
-								</div>
-								<div class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.text.$invalid && !postForm.text.$pristine ,'has-success' : postForm.text.$valid }">
-									<label for="text">Text:</label>
-									<input type="text" class="form-control" id="text" ng-model="post.comment.text" placeholder="Text" name="text" ng-minlength="2" ng-required="true">
-								</div>
-								<div class="col-md-2">
-									<button type="submit">Add Comment</button>
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="container-fluid" ng-show="displayComments" ng-repeat="n in post.currentComments track by $index">
+					<div class="col-md-10">
 						<div class="row">
-							<p>{{n.author}} - {{n.text}}</p>
+							<div class="col-md-12" id="postTitle">
+								<p class="titleRow">{{n.title}} |  
+									<span class="glyphicon glyphicon-arrow-up" ng-click="upVote(n)"></span>
+									<span ng-class="{ positive: isPositive(n.votes), negative: isNegative(n.votes), zero: isZero(n.votes) }">{{n.votes}}</span>
+									<span class="glyphicon glyphicon-arrow-down" ng-click="downVote(n)"></span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-offset-10 author">
+								<p>By {{n.author}}</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-11" id="description" >
+								<p>{{n.description}}</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3" id="date" >
+								<p><span class="glyphicon glyphicon-calendar"></span> {{n.date | amCalendar}}</p>
+							</div>
+							<div class="col-md-3" id="comments" ng-click="toggleComments()">
+								<p><span class="glyphicon glyphicon-comment"></span>
+								 <ng-pluralize count="getCommentCount(n)" when="{'1': '{} Comment', 'other': '{} Comments'}"></ng-pluralize>
+								</p>
+							</div>
+							<div class="col-md-3" id="addComments" ng-click="showCommentForm()">
+								<p><span class="glyphicon glyphicon-pencil"></span> Add Comment</p>
+							</div>
+						</div>
+						<div class="row" >
+							<div class="col-md-12" ng-show="addComment">
+								<form name="postForm" ng-submit="submitComment(postForm)" nonvalidate>
+									<div  class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
+										<label for="author">Author:</label>
+										<input type="text" class="form-control" id="author" ng-model="post.comment.author" placeholder="Author" name="author" ng-minlength="2" ng-required="true">
+									</div>
+									<div class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.text.$invalid && !postForm.text.$pristine ,'has-success' : postForm.text.$valid }">
+										<label for="text">Text:</label>
+										<input type="text" class="form-control" id="text" ng-model="post.comment.text" placeholder="Text" name="text" ng-minlength="2" ng-required="true">
+									</div>
+									<div class="col-md-2">
+										<button type="submit">Add Comment</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="container-fluid" ng-show="displayComments" ng-repeat="n in post.currentComments track by $index">
+							<div class="row">
+								<p>{{n.author}} - {{n.text}}</p>
+							</div>
 						</div>
 					</div>
 				</div>
