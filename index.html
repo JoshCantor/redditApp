@@ -109,7 +109,7 @@
 							<div class="col-md-1">
 								<p class="bar">|</p>
 							</div>
-							<div class="col-md-2" id="comments" ng-click="toggleComments()">
+							<div class="col-md-2" id="addComments" ng-click="toggleComments(n)">
 								<p><span class="glyphicon glyphicon-comment"></span>
 								 <ng-pluralize count="getCommentCount(n)" when="{'1': '{} Comment', 'other': '{} Comments'}"></ng-pluralize>
 								</p>
@@ -117,30 +117,32 @@
 							<div class="col-md-1">
 								<p class="bar">|</p>
 							</div>
-							<div class="col-md-2" id="addComments" ng-click="toggleCommentForm()">
+							<div class="col-md-2" id="addComments" ng-click="toggleCommentForm(n)">
 								<p><span class="glyphicon glyphicon-pencil"></span> Add Comment</p>
 							</div>
 						</div>
 						<div class="row" >
-							<div class="col-md-12" ng-show="addComment">
-								<form name="postForm" ng-submit="submitComment(postForm)" nonvalidate>
+							<div class="col-md-offset-3 col-md-9" ng-show="n.addComment">
+								<form name="postForm" ng-submit="submitComment(n)" nonvalidate>
 									<div  class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
 										<label for="author">Author:</label>
-										<input type="text" class="form-control" id="author" ng-model="post.comment.author" placeholder="Author" name="author" ng-minlength="2" ng-required="true">
+										<input type="text" class="form-control" id="author" ng-model="n.comment.author" placeholder="Author" name="author" ng-minlength="2" ng-required="true">
 									</div>
 									<div class="col-md-2 form-group" ng-class="{ 'has-error' : postForm.text.$invalid && !postForm.text.$pristine ,'has-success' : postForm.text.$valid }">
 										<label for="text">Text:</label>
-										<input type="text" class="form-control" id="text" ng-model="post.comment.text" placeholder="Text" name="text" ng-minlength="2" ng-required="true">
+										<input type="text" class="form-control" id="text" ng-model="n.comment.text" placeholder="Text" name="text" ng-minlength="2" ng-required="true">
 									</div>
 									<div class="col-md-2">
-										<button type="submit">Add Comment</button>
+										<button class="commentButton" type="submit">Add Comment</button>
 									</div>
 								</form>
 							</div>
 						</div>
-						<div class="container-fluid" ng-show="displayComments" ng-repeat="n in post.currentComments track by $index">
-							<div class="row">
-								<p>{{n.author}} - {{n.text}}</p>
+						<div class="container-fluid" ng-repeat="comment in n.currentComments track by $index">
+							<div class="row" ng-show="n.displayComments">
+								<div class="col-md-offset-3 col-md-5" id="comments">
+									<p><span class="commentAuthor">{{comment.author}} -</span> {{comment.text}}</p>
+								</div>
 							</div>
 						</div>
 					</div>

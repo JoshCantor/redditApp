@@ -23,13 +23,12 @@
 }
 
 #img {
-	margin-top: 17px;
+	margin-top: 18px;
 	margin-right: 0px;
 	padding-left: 5px;
-	padding-bottom: 17px;
+	padding-bottom: 18px;
 	overflow: hidden;
 }
-
 
 .glyphicon-arrow-down, .glyphicon-arrow-up {
 	font-size: 30px
@@ -49,7 +48,7 @@
 	font-size: 18px;
 }
 
-#date, #comments, #addComments {
+#date, #addComments, #addComments {
 	font-size: 16px;
 	font-family: sans-serif;
 	padding-left: 10px;
@@ -61,6 +60,18 @@
 	padding-right: 0px;
 	padding-left: 0px;
 	font-size: 16px;
+}
+
+.commentButton {
+	margin-top: 30px;
+}
+
+.commentAuthor {
+	font-weight: 700; 
+}
+
+#comments {
+	padding-left: 0px;
 }
 
 .positive {

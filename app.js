@@ -5,10 +5,6 @@ app.controller("AppController", function($scope) {
 	$scope.displayInitialPost = false;
 	$scope.currentPosts = [];
 	$scope.post.votes = 0;
-	$scope.post.addComment = false;
-	$scope.post.comment = {};
-	$scope.post.currentComments = [];
-	$scope.post.displayComments = false;
 	$scope.addPost = false;
 	$scope.post.commentNumber = 0;
 	$scope.sortValue = "date";
@@ -20,6 +16,7 @@ app.controller("AppController", function($scope) {
 	$scope.submitPost = function(postForm) {
 		$scope.addPost = false;
 		$scope.displayInitialPost = true;
+		$scope.post.currentComments = [];
 		
 		var momentDate = moment(),
 			rawDate = Date.now();
@@ -32,6 +29,9 @@ app.controller("AppController", function($scope) {
 			postCopy[key] = $scope.post[key];
 		}
 		$scope.currentPosts.push(postCopy);
+		$scope.post = {
+			comment: {}
+		};
 	}
 	
 	$scope.upVote = function(thisPost) {
@@ -54,23 +54,25 @@ app.controller("AppController", function($scope) {
 		return (voteTotal === 0);
 	}
 
-	$scope.toggleCommentForm = function() {
-		$scope.addComment = !$scope.addComment;
-		$scope.displayComments = false;
+	$scope.toggleCommentForm = function(n) {
+		n.addComment = !n.addComment;
+		n.displayComments = false;
 	}
 
-	$scope.submitComment = function(postForm) {
+	$scope.submitComment = function(n) {
 		var commentCopy = {};
-		for (key in $scope.post.comment) {
-			commentCopy[key] = $scope.post.comment[key];
+		for (key in n.comment) {
+			commentCopy[key] = n.comment[key];
 		}
-		$scope.post.currentComments.push(commentCopy);
-		$scope.addComment = false;
-		$scope.displayComments = true;
+		n.currentComments.push(commentCopy);
+		n.addComment = false;
+		n.displayComments = true;
+		debugger
+		n.comment = {};
 	}
 
-	$scope.toggleComments = function() {
-		$scope.displayComments = !$scope.displayComments;
+	$scope.toggleComments = function(n) {
+		n.displayComments = !n.displayComments;
 	}
 
 	$scope.getCommentCount = function(thisPost) {
